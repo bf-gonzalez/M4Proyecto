@@ -1,5 +1,5 @@
 import { ApiHideProperty, PickType } from "@nestjs/swagger";
-import { IsEmail, IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, IsStrongPassword, Length, MaxLength, MinLength, minLength, Validate } from "class-validator";
+import { IsEmail, IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, IsStrongPassword, Length, Matches, MaxLength, MinLength, minLength, Validate } from "class-validator";
 import { MatchPassword } from "src/decorators/matchPassword.decorator";
 
 
@@ -7,12 +7,15 @@ export class CreateUserDto{
 
     /**
      * Debe ser un string de entre 3 y 80 caracteres
-     * @example 'Test User01'
+     * @example 'Test User'
      */
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
     @MaxLength(80)
+    @Matches(/^[a-zA-Z]+$/, {
+        message: 'El nombre no puede contener numeros.'
+      })
     name: string;
 
     /**

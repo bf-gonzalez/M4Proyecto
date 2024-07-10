@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './Users/users.module';
@@ -11,6 +11,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { JwtModule } from '@nestjs/jwt';
+import { CategoriesService } from './categories/categories.service';
+import { ProductsService } from './Products/products.service';
 
 
 @Module({

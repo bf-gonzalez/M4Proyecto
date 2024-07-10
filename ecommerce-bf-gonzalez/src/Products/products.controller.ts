@@ -5,7 +5,7 @@ import { Role } from "src/Users/roles.enum";
 import { Roles } from "src/decorators/roles.decorator";
 import { AuthGuard } from "src/Auth/guards/auth.guard";
 import { RolesGuard } from "src/Auth/guards/roles.guard";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
 
 @ApiTags('products')
@@ -33,7 +33,7 @@ export class ProductsController{
         return this.productsService.creatProducts();
     }
 
-    
+    @ApiBearerAuth()
     @HttpCode(201)
     @Put(':id')
     @Roles(Role.Admin)
@@ -42,6 +42,7 @@ export class ProductsController{
         return this.productsService.updateProducts(id, prooduct)
     }
     
+    @ApiBearerAuth()
     @HttpCode(200)
     @Delete(':id')
     @Roles(Role.Admin)

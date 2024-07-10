@@ -61,11 +61,17 @@ export class ProductsRepository{
 
         //Subir el nuevo producto a BD
         await this.productsRepository
+        //crea un objeto queryBuilder permite construir consultas SQL
         .createQueryBuilder()
+        //Hace la insercion en la base de datos
         .insert()
+        //espesifica la tabla de la en la que se hace la insercion
         .into(Products)
+        //define los valores a insertar en la BD
         .values(product)
+        //Indica que  campos deben actualizarse si ya existe un registro con una clave unica
         .orUpdate(['description', 'price', 'imgUrl', 'stock','category_id'],['name'])
+        //Ejecuta la consulta de isercion en la base de datos
         .execute();
       });
       return "Productos agregados";

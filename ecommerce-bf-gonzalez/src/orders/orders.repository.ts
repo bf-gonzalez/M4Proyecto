@@ -98,5 +98,24 @@ export class OrdersRepository {
         return order;
     }
 
+     async deleteOrden(orderId: string){
+        const order = await this.ordersRepository.findOne({
+            where: { id: orderId },
+            relations: { orderDetails: {
+                products: true
+            }}
+        });
+        if(!order) {
+            throw new NotFoundException(`Orden con id ${orderId} no encontrado`);
+        }
+        
+
+        
+
+        
+        
+        await this.ordersRepository.remove(order)
+
+    }
     
 }

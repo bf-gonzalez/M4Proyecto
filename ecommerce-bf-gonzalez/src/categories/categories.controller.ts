@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { ApiTags } from '@nestjs/swagger';
+
 
 @ApiTags('categories')
 @Controller('categories')
@@ -16,5 +17,8 @@ export class CategoriesController {
     getCategories(){
         return this.categoriesService.getCategories();
     }
+
+    
+
 
 }
